@@ -62,7 +62,14 @@ with tab1:
 with tab2:
     st.header("Expected vs. Actual Income")
     income_df = load_data(INCOME_FILE)
-    st.dataframe(income_df)
+
+    # Filter by date
+    st.subheader("Filter Income")
+    start_date = st.date_input("Start Date", value=datetime.today() - timedelta(days=30), key="income_start")
+    end_date = st.date_input("End Date", value=datetime.today(), key="income_end")
+    filtered_income_df = income_df[(pd.to_datetime(income_df["Date"]) >= pd.to_datetime(start_date)) &
+                                   (pd.to_datetime(income_df["Date"]) <= pd.to_datetime(end_date))]
+    st.dataframe(filtered_income_df)
 
     with st.form("Add Income"):
         date = st.date_input("Date", key="idate")
@@ -77,11 +84,28 @@ with tab2:
             save_data(income_df, INCOME_FILE)
             st.success("Income entry added.")
 
+    if st.button("Delete Last Income Entry") and not income_df.empty:
+        income_df = income_df[:-1]
+        save_data(income_df, INCOME_FILE)
+        st.warning("Last income entry deleted.")
+
 # --- Expenses ---
 with tab3:
     st.header("Expected vs. Actual Expenses")
     expenses_df = load_data(EXPENSES_FILE)
-    st.dataframe(expenses_df)
+
+    # Filter by date and/or category
+    st.subheader("Filter Expenses")
+    start_date_exp = st.date_input("Start Date", value=datetime.today() - timedelta(days=30), key="exp_start")
+    end_date_exp = st.date_input("End Date", value=datetime.today(), key="exp_end")
+    category_filter = st.text_input("Filter by Description Keyword", key="exp_filter")
+
+    filtered_expenses_df = expenses_df[(pd.to_datetime(expenses_df["Date"]) >= pd.to_datetime(start_date_exp)) &
+                                       (pd.to_datetime(expenses_df["Date"]) <= pd.to_datetime(end_date_exp))]
+    if category_filter:
+        filtered_expenses_df = filtered_expenses_df[filtered_expenses_df["Description"].str.contains(category_filter, case=False)]
+
+    st.dataframe(filtered_expenses_df)
 
     with st.form("Add Expense"):
         date = st.date_input("Date", key="edate")
@@ -95,6 +119,11 @@ with tab3:
             expenses_df = pd.concat([expenses_df, new_row], ignore_index=True)
             save_data(expenses_df, EXPENSES_FILE)
             st.success("Expense entry added.")
+
+    if st.button("Delete Last Expense Entry") and not expenses_df.empty:
+        expenses_df = expenses_df[:-1]
+        save_data(expenses_df, EXPENSES_FILE)
+        st.warning("Last expense entry deleted.")
 
 # --- Vacation Fund ---
 with tab4:
