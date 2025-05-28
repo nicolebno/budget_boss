@@ -1,0 +1,30 @@
+Date,Description,Expected,Actual,Recurring
+5/1/2025,Rent,2250.0,2250.0,True
+5/1/2025,Sentra,102.0,102.0,True
+5/1/2025,T-Mobile,173.62,183.83,True
+5/6/2025,Youtube TV,85.0,85.0,True
+5/12/2025,Tucoemas,350.0,359.12,True
+5/12/2025,Discover,350.0,303.0,True
+5/13/2025,Pet Insurance,45.0,50.92,True
+5/15/2025,Dancers Edge,125.0,150.0,True
+5/16/2025,DisneyPlus,25.0,29.99,True
+5/27/2025,Spotify,19.99,19.99,True
+5/27/2025,B of A,35.0,25.0,True
+5/27/2025,Target,35.0,30.0,True
+5/27/2025,CapitalOne,90.0,150.0,True
+5/6/2025,StudentLoans,125.0,128.9,True
+5/6/2025,Sentra,103.0,127.38,True
+5/12/2025,Volvo,850.0,853.55,True
+5/12/2025,Sentra,103.0,127.38,True
+5/13/2025,Pool Guy,135.0,135.0,True
+5/13/2025,SCE,550.0,554.58,True
+5/14/2025,Yard Guy,165.0,171.94,True
+5/15/2025,State Farm,356.0,223.08,True
+5/15/2025,Trash,125.0,115.6,True
+19-May,Sentra,103.0,127.38,True
+5/19/2025,Pilates,200.0,200.0,True
+5/27/2025,Sentra,103.0,127.38,True
+2025-05-30,Sentra,102.0,0.0,True
+2025-05-30,T-Mobile,173.62,0.0,True
+2025-05-30,Rent,2250.0,0.0,True
+
